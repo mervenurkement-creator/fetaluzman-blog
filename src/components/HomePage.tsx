@@ -59,10 +59,11 @@ function Typewriter({ words }: { words: string[] }) {
 }
 
 /* ─── Servis kartı ─── */
-function ServiceCard({ icon, title, desc, color, delay }: any) {
+function ServiceCard({ icon, title, desc, color, delay, href }: any) {
   const { ref, visible } = useInView()
   const [hov, setHov] = useState(false)
   return (
+    <Link href={href || '#'} style={{ textDecoration: 'none', display: 'block' }}>
     <div ref={ref} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
         background: '#fff', borderRadius: '20px',
@@ -92,6 +93,7 @@ function ServiceCard({ icon, title, desc, color, delay }: any) {
         opacity: hov ? 1 : 0, transition: 'opacity .2s'
       }}>Daha fazla bilgi →</div>
     </div>
+    </Link>
   )
 }
 
@@ -507,12 +509,12 @@ export default function HomePage({ posts }: { posts: any[] }) {
           />
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '20px', marginTop: '48px' }}>
             {[
-              { icon: '🗓️', title: 'Haftalık Gebelik Takibi', color: '#D15398', delay: 0, desc: 'Gebeliğinizin 1. haftasından 40. haftasına kadar her haftanın rehberi. Bebeğinizin gelişimi, annenin değişimleri ve yapılacaklar.' },
-              { icon: '🔬', title: 'Anomali Taraması', color: '#8b5cf6', delay: 0.1, desc: 'NT ölçümü, kombine test, ayrıntılı ultrasonografi ve genetik taramalar hakkında kapsamlı ve anlaşılır bilgiler.' },
-              { icon: '⚠️', title: 'Yüksek Riskli Gebelik', color: '#f97316', delay: 0.2, desc: 'Preeklampsi, gestasyonel diyabet, erken doğum riski ve diğer komplikasyonlar için güncel kılavuzlar ve yönetim stratejileri.' },
-              { icon: '📊', title: 'Fetal Büyüme Takibi', color: '#22c55e', delay: 0.3, desc: 'Doppler ultrasonografi, biyometri ölçümleri ve fetal büyüme kısıtlılığı yönetimi hakkında uzman görüşleri.' },
-              { icon: '🧬', title: 'Genetik Danışmanlık', color: '#3b82f6', delay: 0.4, desc: 'NIPT, amniyosentez, CVS gibi prenatal genetik testler ve sonuçların yorumlanması konusunda rehberlik.' },
-              { icon: '💬', title: 'Online Danışmanlık', color: '#ec4899', delay: 0.5, desc: 'WhatsApp veya video görüşme ile uzman görüşü alın. Randevu sistemi ve esnek saatler ile yanınızdayız.' },
+              { icon: '🗓️', title: 'Haftalık Gebelik Takibi', href: '/hizmetler/haftalik-gebelik-takibi', color: '#D15398', delay: 0, desc: 'Gebeliğinizin 1. haftasından 40. haftasına kadar her haftanın rehberi. Bebeğinizin gelişimi, annenin değişimleri ve yapılacaklar.' },
+              { icon: '🔬', title: 'Anomali Taraması', href: '/hizmetler/anomali-taramasi', color: '#8b5cf6', delay: 0.1, desc: 'NT ölçümü, kombine test, ayrıntılı ultrasonografi ve genetik taramalar hakkında kapsamlı ve anlaşılır bilgiler.' },
+              { icon: '⚠️', title: 'Yüksek Riskli Gebelik', href: '/hizmetler/yuksek-riskli-gebelik', color: '#f97316', delay: 0.2, desc: 'Preeklampsi, gestasyonel diyabet, erken doğum riski ve diğer komplikasyonlar için güncel kılavuzlar ve yönetim stratejileri.' },
+              { icon: '📊', title: 'Fetal Büyüme Takibi', href: '/hizmetler/fetal-buyume-takibi', color: '#22c55e', delay: 0.3, desc: 'Doppler ultrasonografi, biyometri ölçümleri ve fetal büyüme kısıtlılığı yönetimi hakkında uzman görüşleri.' },
+              { icon: '🧬', title: 'Genetik Danışmanlık', href: '/hizmetler/genetik-danismanlik', color: '#3b82f6', delay: 0.4, desc: 'NIPT, amniyosentez, CVS gibi prenatal genetik testler ve sonuçların yorumlanması konusunda rehberlik.' },
+              { icon: '💬', title: 'Online Danışmanlık', href: '/hizmetler/online-danismanlik', color: '#ec4899', delay: 0.5, desc: 'WhatsApp veya video görüşme ile uzman görüşü alın. Randevu sistemi ve esnek saatler ile yanınızdayız.' },
             ].map(s => <ServiceCard key={s.title} {...s} />)}
           </div>
         </div>
