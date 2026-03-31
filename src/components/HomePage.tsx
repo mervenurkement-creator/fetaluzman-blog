@@ -416,7 +416,7 @@ export default function HomePage({ posts }: { posts: any[] }) {
               opacity: heroVisible ? 1 : 0, transition: 'all .7s ease .4s'
             }}>
               {[
-                { icon: '🏆', text: 'FMF Sertifikalı' },
+                { icon: '🏆', text:  },
                 { icon: '🔬', text: 'Kanıta Dayalı' },
                 { icon: '🔒', text: 'Güvenli Platform' },
               ].map(({ icon, text }) => (
@@ -479,7 +479,7 @@ export default function HomePage({ posts }: { posts: any[] }) {
         <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '24px' }}>
           {[
             { val: 500, suf: '+', label: 'Mutlu Anne Adayı', icon: '🤰' },
-            { val: 10, suf: '+', label: 'Yıllık Deneyim', icon: '🏆' },
+            { val: 2025, suf: '', label: 'Fellowship Başlangıcı', icon: '🎓' },
             { val: 50, suf: '+', label: 'Uzman Makale', icon: '📝' },
             { val: 98, suf: '%', label: 'Memnuniyet Oranı', icon: '⭐' },
           ].map(({ val, suf, label, icon }) => (
@@ -630,15 +630,13 @@ export default function HomePage({ posts }: { posts: any[] }) {
               Dr. Mervenur Kement
             </h2>
             <p style={{ fontSize: '15px', color: '#b8b5d8', lineHeight: 1.85, marginBottom: '24px' }}>
-              Kadın Hastalıkları ve Doğum Uzmanı olarak Ankara Bilkent Şehir Hastanesi'nde görev yapmaktayım. King's College London'da Prof. Kypros Nicolaides danışmanlığında FMF Fetal Tıp Fellowshipi yapmaktayım.
+              Kadın Hastalıkları ve Doğum Uzmanı olarak gebelik takibi ve fetal tıp alanına odaklanmaktayım. Eylül 2025'te King's College London'da Prof. Kypros Nicolaides danışmanlığında FMF Fetal Tıp Fellowship programına başlıyorum.
             </p>
             <p style={{ fontSize: '15px', color: '#b8b5d8', lineHeight: 1.85, marginBottom: '32px' }}>
               Gebelik takibi, fetal anomali taraması ve yüksek riskli gebelik yönetimi konularında uzmanlığımı hasta dostu bir platform aracılığıyla sizinle paylaşmak için buradayım.
             </p>
             {[
-              '🎓 FMF Fetal Tıp Fellowshipi — King\'s College London',
-              '🏥 Ankara Bilkent Şehir Hastanesi',
-              '🔬 ISUOG 2026 — Araştırma Sunumu',
+              '🎓 FMF Fellowship — King\'s College London (Eylül 2025)',
               '📜 Kadın Hastalıkları ve Doğum Uzmanı',
             ].map(item => (
               <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px', fontSize: '14px', color: '#b8b5d8' }}>
@@ -824,7 +822,7 @@ function AboutCard() {
         ))}
       </div>
       <div style={{ marginTop: '24px', display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'center' }}>
-        {['FMF Sertifikalı', 'ISUOG Üyesi', 'Perinatoloji', 'Fetal Tıp'].map(tag => (
+        {['ISUOG Üyesi', 'Fetal Tıp'].map(tag => (
           <span key={tag} style={{ fontSize: '11px', fontWeight: 700, color: '#D15398', background: 'rgba(209,83,152,.15)', border: '1px solid rgba(209,83,152,.3)', padding: '4px 12px', borderRadius: '20px' }}>
             {tag}
           </span>
