@@ -1,16 +1,13 @@
 import { getPostBySlug, getAllPosts } from '@/lib/posts'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { MDXRemote } from 'next-mdx-remote/rsc'
-import { mdxComponents } from '@/components/mdx/MdxComponents'
 import { PostHeader } from '@/components/blog/PostHeader'
 import { TableOfContents } from '@/components/blog/TableOfContents'
 import { SocialShare } from '@/components/blog/SocialShare'
 import { RelatedPosts } from '@/components/blog/RelatedPosts'
 import { extractHeadings } from '@/lib/headings'
-import { rehypePlugins, remarkPlugins } from '@/lib/mdxConfig'
+import { renderMarkdown } from '@/lib/renderMarkdown'
 
-// Next.js 15: params is a Promise
 type Props = {
   params: Promise<{ slug: string }>
 }
@@ -47,6 +44,7 @@ export default async function PostPage({ params }: Props) {
   const headings = extractHeadings(post.content)
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fetaluzman.com'
   const postUrl = `${siteUrl}/blog/${post.slug}`
+  const htmlContent = await renderMarkdown(post.content)
 
   return (
     <div className="min-h-screen bg-white">
@@ -57,12 +55,9 @@ export default async function PostPage({ params }: Props) {
             prose-headings:font-display prose-h2:text-3xl prose-h3:text-xl
             prose-a:text-pink-600 prose-code:text-pink-700 prose-code:bg-slate-100
             prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-            prose-blockquote:border-pink-400 prose-blockquote:bg-pink-50 prose-blockquote:rounded-r-xl">
-            <MDXRemote
-              source={post.content}
-              components={mdxComponents}
-              options={{ mdxOptions: { remarkPlugins, rehypePlugins } }}
-            />
+            prose-blockquote:border-l-4 prose-blockquote:border-pink-400 prose-blockquote:bg-pink-50
+            prose-pre:bg-slate-900 prose-pre:rounded-xl">
+            <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
             <div className="mt-12 pt-8 border-t border-slate-100 not-prose">
               <SocialShare url={postUrl} title={post.title} />
             </div>
