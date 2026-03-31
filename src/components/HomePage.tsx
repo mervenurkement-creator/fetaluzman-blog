@@ -579,12 +579,12 @@ export default function HomePage({ posts }: { posts: any[] }) {
             {[
               { num: 1, icon: '📅', title: 'Randevu Al', desc: 'WhatsApp veya web sitesi üzerinden uygun saati seçin', delay: 0 },
               { num: 2, icon: '📋', title: 'Bilgilerini Gönder', desc: 'Gebelik bilgileri ve sorularınızı paylaşın', delay: 0.1 },
-              { num: 3, icon: '💳', title: 'Ödeme Yap', desc: 'Güvenli IBAN transferi ile ödemenizi tamamlayın', delay: 0.2 },
+              { num: 3, icon: '📋', title: 'Formu Doldur', desc: 'Gebelik bilgilerinizi ve sorularınızı e-posta ile gönderin', delay: 0.2 },
               { num: 4, icon: '🎥', title: 'Görüşme Yap', desc: 'Google Meet ile yüz yüze danışmanlık alın', delay: 0.3 },
             ].map(s => <StepCard key={s.num} {...s} />)}
           </div>
           <div style={{ textAlign: 'center', marginTop: '48px' }}>
-            <a href="https://wa.me/905XXXXXXXXX" style={{
+            <a href="mailto:dr.mervenur@fetaluzman.com" style={{
               display: 'inline-flex', alignItems: 'center', gap: '10px',
               background: '#25D366', color: '#fff', fontSize: '16px',
               fontWeight: 700, padding: '16px 36px', borderRadius: '30px',
@@ -705,12 +705,12 @@ export default function HomePage({ posts }: { posts: any[] }) {
             Sorularınız mı var? Endişeleriniz mi var?<br />Uzman danışmanlıkla doğru bilgiye ulaşın.
           </p>
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="https://wa.me/905XXXXXXXXX" style={{
+            <a href="mailto:dr.mervenur@fetaluzman.com" style={{
               display: 'inline-flex', alignItems: 'center', gap: '10px',
               background: '#25D366', color: '#fff', fontSize: '15px', fontWeight: 700,
               padding: '15px 32px', borderRadius: '30px', textDecoration: 'none',
               boxShadow: '0 8px 24px rgba(37,211,102,.4)'
-            }}>📱 WhatsApp</a>
+            }}>📧 E-posta</a>
             <Link href="/blog" style={{
               display: 'inline-flex', alignItems: 'center', gap: '10px',
               background: 'rgba(255,255,255,.1)', color: '#fff', fontSize: '15px', fontWeight: 700,
@@ -738,7 +738,7 @@ export default function HomePage({ posts }: { posts: any[] }) {
               <div style={{ display: 'flex', gap: '10px' }}>
                 {[
                   { href: 'https://instagram.com/fetaluzman', icon: '📷', label: 'Instagram' },
-                  { href: 'https://wa.me/905XXXXXXXXX', icon: '📱', label: 'WhatsApp' },
+                  { href: 'mailto:dr.mervenur@fetaluzman.com', icon: '📱', label: 'WhatsApp' },
                   { href: 'https://tiktok.com/@fetaluzman', icon: '🎵', label: 'TikTok' },
                 ].map(s => (
                   <a key={s.label} href={s.href} title={s.label} style={{
@@ -753,7 +753,7 @@ export default function HomePage({ posts }: { posts: any[] }) {
             {[
               { title: 'Platform', links: [['/', 'Ana Sayfa'], ['/blog', 'Blog'], ['#hakkimizda', 'Hakkımızda'], ['#sss', 'SSS']] },
               { title: 'Hizmetler', links: [['#', 'Online Danışmanlık'], ['#', 'Gebelik Takibi'], ['#', 'Anomali Taraması'], ['#', 'Risk Değerlendirmesi']] },
-              { title: 'İletişim', links: [['https://wa.me/905XXXXXXXXX', 'WhatsApp'], ['https://instagram.com/fetaluzman', 'Instagram @fetaluzman'], ['https://tiktok.com/@fetaluzman', 'TikTok @fetaluzman'], ['#', 'Randevu Al']] },
+              { title: 'İletişim', links: [['mailto:dr.mervenur@fetaluzman.com', 'WhatsApp'], ['https://instagram.com/fetaluzman', 'Instagram @fetaluzman'], ['https://tiktok.com/@fetaluzman', 'TikTok @fetaluzman'], ['#', 'Randevu Al']] },
             ].map(col => (
               <div key={col.title}>
                 <h4 style={{ fontSize: '11px', fontWeight: 800, color: 'rgba(255,255,255,.4)', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '14px' }}>{col.title}</h4>
