@@ -416,7 +416,7 @@ export default function HomePage({ posts }: { posts: any[] }) {
               opacity: heroVisible ? 1 : 0, transition: 'all .7s ease .4s'
             }}>
               {[
-                { icon: '🏆', text:  },
+                { icon: '🎓', text: 'Fellowship 2025' },
                 { icon: '🔬', text: 'Kanıta Dayalı' },
                 { icon: '🔒', text: 'Güvenli Platform' },
               ].map(({ icon, text }) => (
