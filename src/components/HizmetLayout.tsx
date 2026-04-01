@@ -70,7 +70,7 @@ export default function HizmetLayout({ title, subtitle, icon, color, category, s
             <div style={{ fontSize: '36px', marginBottom: '12px' }}>💬</div>
             <h3 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '18px', fontWeight: 800, color: '#fff', marginBottom: '10px' }}>Sorunuz mu var?</h3>
             <p style={{ fontSize: '13px', color: '#b8b5d8', lineHeight: 1.6, marginBottom: '16px' }}>Online danışmanlık ile uzman görüşü alın</p>
-            <a href="mailto:dr.mervenur@fetaluzman.com" style={{ display: 'block', background: '#D15398', color: '#fff', fontWeight: 700, fontSize: '14px', padding: '12px', borderRadius: '12px', textDecoration: 'none' }}>
+            <a href="mailto:gebelikdanismanim@gmail.com" style={{ display: 'block', background: '#D15398', color: '#fff', fontWeight: 700, fontSize: '14px', padding: '12px', borderRadius: '12px', textDecoration: 'none' }}>
               📧 E-posta Gönder
             </a>
           </div>
