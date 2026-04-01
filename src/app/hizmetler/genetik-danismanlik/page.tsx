@@ -1,4 +1,3 @@
-
 import HizmetLayout from '@/components/HizmetLayout'
 export const metadata = { title: 'Genetik Danışmanlık | Fetal Uzman' }
 export default function Page() {
