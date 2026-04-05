@@ -23,9 +23,33 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string
 }
 
 const WEEK_GROUPS = [
-  { label: '1-12. Hafta', weeks: [1, 5, 9], color: '#D15398' },
-  { label: '13-28. Hafta', weeks: [13, 17, 21, 25], color: '#8b5cf6' },
-  { label: '29-40. Hafta', weeks: [29, 33, 37], color: '#f97316' },
+  {
+    label: '1-12. Hafta',
+    color: '#D15398',
+    pages: [
+      { range: '1-4', title: '1-4. Hafta', desc: 'İmplantasyon ve erken gelişim' },
+      { range: '5-8', title: '5-8. Hafta', desc: 'Kalp atışı ve organ gelişimi' },
+      { range: '9-12', title: '9-12. Hafta', desc: 'İlk trimester taramaları' },
+    ]
+  },
+  {
+    label: '13-28. Hafta',
+    color: '#8b5cf6',
+    pages: [
+      { range: '13-19', title: '13-19. Hafta', desc: 'Hareketler ve detaylı ultrason' },
+      { range: '20-24', title: '20-24. Hafta', desc: 'Anomali taraması dönemi' },
+      { range: '25-28', title: '25-28. Hafta', desc: 'Hızlı büyüme ve şeker testi' },
+    ]
+  },
+  {
+    label: '29-40. Hafta',
+    color: '#f97316',
+    pages: [
+      { range: '29-32', title: '29-32. Hafta', desc: 'Akciğer olgunlaşması' },
+      { range: '33-36', title: '33-36. Hafta', desc: 'Doğuma hazırlık' },
+      { range: '37-40', title: '37-40. Hafta', desc: 'Term dönem ve doğum' },
+    ]
+  },
 ]
 
 export default function BlogClientPage({ posts }: { posts: Post[] }) {
@@ -55,8 +79,6 @@ export default function BlogClientPage({ posts }: { posts: Post[] }) {
       posts: filtered.filter(p => (p.category || 'Diğer') === cat)
     }))
     .filter(g => g.posts.length > 0)
-
-  const weeklyPosts = posts.filter(p => p.category === 'Haftalık Gebelik Rehberi')
 
   return (
     <div style={{ minHeight: '100vh', background: '#f8f6ff', fontFamily: 'system-ui, sans-serif' }}>
@@ -132,7 +154,7 @@ export default function BlogClientPage({ posts }: { posts: Post[] }) {
           {[
             { icon: '📝', val: posts.length, lbl: 'Makale' },
             { icon: '🗂️', val: categories.length - 1, lbl: 'Kategori' },
-            { icon: '🤰', val: weeklyPosts.length, lbl: 'Haftalık Rehber' },
+            { icon: '🤰', val: 9, lbl: 'Haftalık Rehber' },
           ].map(({ icon, val, lbl }) => (
             <div key={lbl} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span style={{ fontSize: '20px' }}>{icon}</span>
@@ -175,7 +197,7 @@ export default function BlogClientPage({ posts }: { posts: Post[] }) {
           })}
         </div>
 
-        {/* HAFTALIK TAKVİM (sadece o kategori seçiliyken veya tümü) */}
+        {/* HAFTALIK TAKVİM */}
         {(activeCategory === 'Tümü' || activeCategory === 'Haftalık Gebelik Rehberi') && !searchQuery && (
           <div style={{
             background: 'linear-gradient(135deg,#fdf0f7 0%,#f3eeff 100%)',
@@ -204,27 +226,33 @@ export default function BlogClientPage({ posts }: { posts: Post[] }) {
                     fontSize: '12px', fontWeight: 800, color: grp.color,
                     letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px'
                   }}>{grp.label}</div>
-                  {weeklyPosts
-                    .filter(p => {
-                      const fm = p as any
-                      return grp.weeks.some(w => fm.week === w || p.title.includes(`${w}-`) || p.title.includes(`${w}.`))
-                    })
-                    .map(p => (
-                      <Link key={p.slug} href={`/blog/${p.slug}`} style={{ textDecoration: 'none' }}>
-                        <div style={{
-                          padding: '10px 12px', borderRadius: '10px', marginBottom: '6px',
-                          background: '#fdf8ff', border: '1px solid #f0edf8',
-                          transition: 'all .2s', cursor: 'pointer'
-                        }}>
-                          <div style={{ fontSize: '13px', fontWeight: 700, color: '#0f0e2a', lineHeight: 1.3 }}>
-                            {p.title}
-                          </div>
-                          <div style={{ fontSize: '11px', color: '#aaa', marginTop: '3px' }}>
-                            {p.readingTime}
-                          </div>
+                  {grp.pages.map(page => (
+                    <Link key={page.range} href={`/hafta/${page.range}`} style={{ textDecoration: 'none' }}>
+                      <div style={{
+                        padding: '10px 12px', borderRadius: '10px', marginBottom: '6px',
+                        background: '#fdf8ff', border: '1px solid #f0edf8',
+                        transition: 'all .2s', cursor: 'pointer'
+                      }}
+                        onMouseEnter={e => {
+                          (e.currentTarget as HTMLDivElement).style.background = `${grp.color}12`;
+                          (e.currentTarget as HTMLDivElement).style.borderColor = grp.color;
+                          (e.currentTarget as HTMLDivElement).style.transform = 'translateX(4px)';
+                        }}
+                        onMouseLeave={e => {
+                          (e.currentTarget as HTMLDivElement).style.background = '#fdf8ff';
+                          (e.currentTarget as HTMLDivElement).style.borderColor = '#f0edf8';
+                          (e.currentTarget as HTMLDivElement).style.transform = 'none';
+                        }}
+                      >
+                        <div style={{ fontSize: '13px', fontWeight: 700, color: '#0f0e2a', lineHeight: 1.3 }}>
+                          {page.title}
                         </div>
-                      </Link>
-                    ))}
+                        <div style={{ fontSize: '11px', color: '#aaa', marginTop: '3px' }}>
+                          {page.desc}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               ))}
             </div>
@@ -236,7 +264,7 @@ export default function BlogClientPage({ posts }: { posts: Post[] }) {
           <div style={{ textAlign: 'center', padding: '80px 0', color: '#aaa' }}>
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>🔍</div>
             <p style={{ fontSize: '18px', fontWeight: 600, color: '#555' }}>Sonuç bulunamadı</p>
-            <p style={{ fontSize: '14px' }}>"{searchQuery}" için yazı yok. Farklı bir kelime deneyin.</p>
+            <p style={{ fontSize: '14px' }}>&quot;{searchQuery}&quot; için yazı yok. Farklı bir kelime deneyin.</p>
           </div>
         )}
 
@@ -332,7 +360,6 @@ function PostCard({ post, colColor, index }: { post: Post; colColor: any; index:
           boxShadow: hovered ? `0 12px 32px ${colColor.dot}22` : 'none'
         }}
       >
-        {/* Kart üst şerit */}
         <div style={{
           height: '6px',
           background: hovered
@@ -342,7 +369,6 @@ function PostCard({ post, colColor, index }: { post: Post; colColor: any; index:
         }} />
 
         <div style={{ padding: '20px' }}>
-          {/* Etiketler */}
           <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '12px' }}>
             {post.tags.slice(0, 2).map(tag => (
               <span key={tag} style={{
@@ -354,7 +380,6 @@ function PostCard({ post, colColor, index }: { post: Post; colColor: any; index:
             ))}
           </div>
 
-          {/* Başlık */}
           <h3 style={{
             fontFamily: 'Playfair Display, Georgia, serif',
             fontSize: '17px', fontWeight: 800,
@@ -368,7 +393,6 @@ function PostCard({ post, colColor, index }: { post: Post; colColor: any; index:
             overflow: 'hidden'
           }}>{post.title}</h3>
 
-          {/* Özet */}
           <p style={{
             fontSize: '13px', color: '#777', lineHeight: 1.7,
             marginBottom: '16px',
@@ -378,7 +402,6 @@ function PostCard({ post, colColor, index }: { post: Post; colColor: any; index:
             overflow: 'hidden'
           }}>{post.excerpt}</p>
 
-          {/* Alt bilgi */}
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
             borderTop: '1px solid #f5f3ff', paddingTop: '12px'
