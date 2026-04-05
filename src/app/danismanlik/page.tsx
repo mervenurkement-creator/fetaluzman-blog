@@ -3,6 +3,7 @@ export const metadata = {
   description: 'Fetal tıp uzmanından online danışmanlık alın. Video görüşme, WhatsApp gebelik paketi ve daha fazlası.',
 }
 import Link from 'next/link'
+import FaqSection from './FaqSection'
 
 const checkSvg = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D15398" strokeWidth="2" style={{ flexShrink: 0, marginTop: 2 }}>
@@ -358,31 +359,7 @@ export default function DanismanlikPage() {
             Merak Ettikleriniz
           </h2>
 
-          <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'left' }}>
-            {[
-              { q: 'Online danışmanlık nasıl gerçekleşir?', a: 'E-posta ile danışmanlık talebinizi iletirsiniz. Gebelik bilgilerinizi ve ultrason raporlarınızı paylaşmanızın ardından, Google Meet üzerinden video görüşme ile uzman değerlendirmesi alırsınız.' },
-              { q: 'WhatsApp gebelik paketi nasıl çalışır?', a: 'Paket aktif olduktan sonra uzman WhatsApp numaranız paylaşılır. Gebeliğiniz boyunca aklınıza takılan soruları, ultrason fotoğraflarınızı ve tahlil sonuçlarınızı mesai saatleri içinde sorabilirsiniz.' },
-              { q: 'Hangi durumlarda danışmanlık alabilirim?', a: 'Riskli gebelik takibi, anomali tarama sonuçları, ikili/üçlü test yorumları, ultrason bulguları, fetal anomaliler ve tedavi planları hakkında ikinci görüş gibi konularda danışmanlık alabilirsiniz.' },
-              { q: 'Ne kadar sürede yanıt alırım?', a: 'Video görüşme için uygun zaman dilimi birlikte belirlenir. WhatsApp paketinde mesai saatleri içinde yanıt verilir.' },
-              { q: 'Ödeme nasıl yapılır?', a: 'Danışmanlık talebiniz onaylandıktan sonra ödeme bilgileri e-posta ile iletilir. Havale/EFT veya online ödeme seçenekleri mevcuttur.' },
-              { q: 'Bilgilerim gizli tutulur mu?', a: 'Evet, tüm kişisel ve tıbbi bilgileriniz kesinlikle gizli tutulur. Bilgileriniz yalnızca danışmanlık sürecinde kullanılır ve üçüncü kişilerle paylaşılmaz.' }
-            ].map((item) => (
-              <div key={item.q} className="dn-faq-item" onClick={(e) => {
-                const el = e.currentTarget
-                el.classList.toggle('open')
-              }}>
-                <button className="dn-faq-btn">
-                  {item.q}
-                  <svg className="dn-faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D15398" strokeWidth="2" style={{ flexShrink: 0, transition: 'transform .3s' }}>
-                    <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
-                  </svg>
-                </button>
-                <div className="dn-faq-answer">
-                  <p style={{ color: '#6b6b8d', fontSize: '0.92rem', lineHeight: 1.65, paddingBottom: 16 }}>{item.a}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <FaqSection />
         </div>
       </section>
     </div>
