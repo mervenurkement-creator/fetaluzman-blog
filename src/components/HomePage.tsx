@@ -565,37 +565,6 @@ export default function HomePage({ posts }: { posts: any[] }) {
           </div>
         </div>
       </section>
-
-      {/* ── DANIŞMANLIK SÜRECİ ── */}
-      <section id="danismanlik" style={{ padding: '80px 32px', background: '#f8f6ff' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <SectionTitle
-            eyebrow="Nasıl Çalışır?"
-            title="Online Danışmanlık Süreci"
-            sub="4 kolay adımda uzman desteğine ulaşın"
-          />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '32px', marginTop: '56px', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: '35px', left: '12%', right: '12%', height: '2px', background: 'linear-gradient(90deg,#D15398,#D870AF)', zIndex: 0, opacity: 0.3 }} />
-            {[
-              { num: 1, icon: '📅', title: 'Randevu Al', desc: 'WhatsApp veya web sitesi üzerinden uygun saati seçin', delay: 0 },
-              { num: 2, icon: '📋', title: 'Bilgilerini Gönder', desc: 'Gebelik bilgileri ve sorularınızı paylaşın', delay: 0.1 },
-              { num: 3, icon: '📞', title: 'Bize Ulaşın', desc: 'E-posta veya telefon ile randevu alın, sorularınızı iletin', delay: 0.2 },
-              { num: 4, icon: '🎥', title: 'Görüşme Yap', desc: 'Google Meet ile yüz yüze danışmanlık alın', delay: 0.3 },
-            ].map(s => <StepCard key={s.num} {...s} />)}
-          </div>
-          <div style={{ textAlign: 'center', marginTop: '48px' }}>
-            <a href="mailto:gebelikdanismanim@gmail.com" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '10px',
-              background: '#25D366', color: '#fff', fontSize: '16px',
-              fontWeight: 700, padding: '16px 36px', borderRadius: '30px',
-              textDecoration: 'none', boxShadow: '0 8px 28px rgba(37,211,102,.4)'
-            }}>
-              <span style={{ fontSize: '22px' }}>📱</span> WhatsApp ile Randevu Al
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* ── SON YAZILAR ── */}
       <section style={{ padding: '80px 32px', background: '#fff' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
