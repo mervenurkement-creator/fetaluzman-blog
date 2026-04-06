@@ -322,7 +322,7 @@ export default function HomePage({ posts }: { posts: any[] }) {
             </Link>
           ))}
         </nav>
-        <Link href="#danismanlik" style={{
+        <Link href="/danismanlik" style={{
           background: 'linear-gradient(135deg,#D15398,#D870AF)', color: '#fff',
           fontSize: '14px', fontWeight: 700, padding: '10px 22px',
           borderRadius: '30px', textDecoration: 'none',
@@ -404,7 +404,7 @@ export default function HomePage({ posts }: { posts: any[] }) {
                 borderRadius: '30px', textDecoration: 'none',
                 boxShadow: '0 8px 28px rgba(209,83,152,.5)', display: 'inline-flex', alignItems: 'center', gap: '8px'
               }}>📚 Blog Yazılarını Oku</Link>
-              <Link href="#danismanlik" style={{
+              <Link href="/danismanlik" style={{
                 background: 'rgba(255,255,255,.1)', color: '#fff',
                 fontSize: '15px', fontWeight: 600,
                 border: '1.5px solid rgba(255,255,255,.25)', padding: '15px 32px',
