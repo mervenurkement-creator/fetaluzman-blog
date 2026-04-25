@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const CAL_LINK = "https://cal.com/fetaluzman";
+const CAL_LINK = "https://cal.eu/fetaluzman";
 
 export default function DanismanlikPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,23 +28,24 @@ export default function DanismanlikPage() {
       ],
       highlighted: false,
       badge: null as string | null,
+      calLink: "https://cal.eu/fetaluzman/15min",
     },
     {
       id: 2,
-      name: "Standart Danışmanlık",
-      duration: "45 dakika",
+      name: "Rapor Danışmanlığı",
+      duration: "Yazılı rapor",
       price: "750",
       priceNote: undefined,
-      description: "Detaylı değerlendirme ve kapsamlı yanıtlar",
+      description: "Ultrason / test sonucunuzu paylaşın, yazılı değerlendirme raporu hazırlayalım",
       features: [
-        "Google Meet görüşmesi",
-        "Ultrason ve tarama yorumlama",
-        "Kişiselleştirilmiş takip önerileri",
-        "Görüşme sonrası özet rapor",
+        "Dosya/görüntü paylaşımı",
+        "Detaylı yazılı değerlendirme",
+        "Yol haritası ve öneriler",
         "Sonraki adımlar planı",
       ],
       highlighted: false,
       badge: null as string | null,
+      calLink: "https://cal.eu/fetaluzman/30min",
     },
     {
       id: 3,
@@ -52,7 +53,7 @@ export default function DanismanlikPage() {
       duration: "1 ay",
       price: "3.000",
       priceNote: "1 görüşme dahil",
-      description: "Bir ay kesintisiz destek + 1 görüşme",
+      description: "Bir ay kesintisiz WhatsApp desteği + 1 görüşme",
       features: [
         "1 ay WhatsApp danışmanlığı",
         "1 adet Google Meet görüşmesi",
@@ -62,24 +63,25 @@ export default function DanismanlikPage() {
       ],
       highlighted: true,
       badge: "En Popüler" as string | null,
+      calLink: "https://cal.eu/fetaluzman/aylik-whatsapp-paketi",
     },
     {
       id: 4,
       name: "Gebelik Boyunca Paket",
       duration: "Tüm gebelik",
       price: "9.000",
-      priceNote: "3 ay fiyatına",
-      description: "Doğuma kadar kesintisiz uzman desteği",
+      priceNote: "1 görüşme dahil",
+      description: "Gebelik boyunca WhatsApp danışma hattı + 1 görüşme",
       features: [
-        "Sınırsız WhatsApp mesajlaşma",
-        "Aylık görüntülü görüşme",
+        "Gebelik boyunca WhatsApp hattı",
+        "1 adet Google Meet görüşmesi",
         "Ultrason fotoğrafı yorumlama",
-        "Haftalık takip rehberliği",
         "Öncelikli yanıt süresi",
         "Doğuma kadar tam destek",
       ],
       highlighted: false,
       badge: null as string | null,
+      calLink: "https://cal.eu/fetaluzman/gebelik-boyunca-paket",
     },
   ];
 
@@ -265,7 +267,7 @@ export default function DanismanlikPage() {
               </ul>
 
               <a
-                href={CAL_LINK}
+                href={pkg.calLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-center py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105"
