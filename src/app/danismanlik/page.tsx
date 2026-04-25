@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const CAL_LINK = "https://cal.com/fetaluzman"; // Cal.com linkinizi buraya yazın
+const CAL_LINK = "https://cal.com/fetaluzman";
 
 export default function DanismanlikPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -18,6 +18,7 @@ export default function DanismanlikPage() {
       name: "Hızlı Danışmanlık",
       duration: "20 dakika",
       price: "499",
+      priceNote: undefined,
       description: "Acil sorularınız için hızlı uzman görüşü",
       features: [
         "Google Meet görüşmesi",
@@ -26,13 +27,14 @@ export default function DanismanlikPage() {
         "Yönlendirme ve öneri",
       ],
       highlighted: false,
-      calLink: CAL_LINK,
+      badge: null as string | null,
     },
     {
       id: 2,
       name: "Standart Danışmanlık",
       duration: "45 dakika",
       price: "750",
+      priceNote: undefined,
       description: "Detaylı değerlendirme ve kapsamlı yanıtlar",
       features: [
         "Google Meet görüşmesi",
@@ -41,11 +43,28 @@ export default function DanismanlikPage() {
         "Görüşme sonrası özet rapor",
         "Sonraki adımlar planı",
       ],
-      highlighted: true,
-      calLink: CAL_LINK,
+      highlighted: false,
+      badge: null as string | null,
     },
     {
       id: 3,
+      name: "Aylık WhatsApp Paketi",
+      duration: "1 ay",
+      price: "3.000",
+      priceNote: "1 görüşme dahil",
+      description: "Bir ay kesintisiz destek + 1 görüşme",
+      features: [
+        "1 ay WhatsApp danışmanlığı",
+        "1 adet Google Meet görüşmesi",
+        "Ultrason fotoğrafı yorumlama",
+        "Mesai saatleri içinde hızlı yanıt",
+        "Takip ve yönlendirme",
+      ],
+      highlighted: true,
+      badge: "En Popüler" as string | null,
+    },
+    {
+      id: 4,
       name: "Gebelik Boyunca Paket",
       duration: "Tüm gebelik",
       price: "9.000",
@@ -60,15 +79,14 @@ export default function DanismanlikPage() {
         "Doğuma kadar tam destek",
       ],
       highlighted: false,
-      calLink: CAL_LINK,
+      badge: null as string | null,
     },
   ];
 
   const credentials = [
-    { icon: "🎓", label: "Tıp Fakültesi", value: "Düzce Üniversitesi, 2013" },
-    { icon: "🏥", label: "Uzmanlık", value: "Ankara Bilkent Şehir Hastanesi, 2021" },
-    { icon: "🇺🇸", label: "Observer", value: "Brigham & Women's / Harvard Medical School, 2020" },
-    { icon: "🇬🇧", label: "Fellowship", value: "King's College London, Fetal Medicine, 2025" },
+    { icon: "🏥", label: "Uzmanlık", value: "Kadın Hastalıkları ve Doğum — Ankara Bilkent Şehir Hastanesi, 2021" },
+    { icon: "🇺🇸", label: "Gözlem Programı", value: "Brigham & Women's Hospital / Harvard Medical School, 2020" },
+    { icon: "🇬🇧", label: "Fellowship", value: "King's College London, Fetal Medicine — Prof. K. Nicolaides, 2025" },
     { icon: "📋", label: "Üyelikler", value: "TJOD, AIUM, ISUOG" },
     { icon: "🔬", label: "Eğitim", value: "FMF Internet Based Courses — 9 modül (2025)" },
   ];
@@ -86,100 +104,76 @@ export default function DanismanlikPage() {
 
   return (
     <main className="min-h-screen bg-[#0a0a1a] text-white overflow-x-hidden">
-      {/* Hero */}
+
+      {/* ── HERO ── */}
       <section
         ref={heroRef}
         className="relative min-h-[80vh] flex items-center justify-center px-6 pt-24 pb-16"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(209,83,152,0.18) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(27,27,69,0.8) 0%, transparent 60%), #0a0a1a",
+            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(209,83,152,0.18) 0%, transparent 70%), #0a0a1a",
         }}
       >
-        {/* Hero arka plan görsel */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <img
             src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1600&auto=format&fit=crop&q=60"
             alt=""
             className="w-full h-full object-cover opacity-10"
           />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(10,10,26,0.5) 0%, rgba(10,10,26,0.97) 100%)" }} />
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(to bottom, rgba(10,10,26,0.5) 0%, rgba(10,10,26,0.97) 100%)" }}
+          />
         </div>
 
-        {/* Dekoratif daireler */}
-        <div
-          className="absolute top-20 right-10 w-64 h-64 rounded-full opacity-10 pointer-events-none"
-          style={{
-            background: "radial-gradient(circle, #D15398 0%, transparent 70%)",
-            filter: "blur(40px)",
-          }}
-        />
-        <div
-          className="absolute bottom-10 left-10 w-48 h-48 rounded-full opacity-10 pointer-events-none"
-          style={{
-            background: "radial-gradient(circle, #1B1B45 0%, transparent 70%)",
-            filter: "blur(30px)",
-          }}
-        />
+        <div className="absolute top-20 right-10 w-64 h-64 rounded-full opacity-10 pointer-events-none"
+          style={{ background: "radial-gradient(circle, #D15398 0%, transparent 70%)", filter: "blur(40px)" }} />
+        <div className="absolute bottom-10 left-10 w-48 h-48 rounded-full opacity-10 pointer-events-none"
+          style={{ background: "radial-gradient(circle, #1B1B45 0%, transparent 70%)", filter: "blur(30px)" }} />
 
         <div
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl mx-auto text-center relative z-10"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(32px)",
             transition: "opacity 0.9s ease, transform 0.9s ease",
           }}
         >
-          {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#D15398]/30 bg-[#D15398]/10 text-[#D15398] text-sm font-medium mb-8">
             <span className="w-2 h-2 rounded-full bg-[#D15398] animate-pulse" />
             Online Danışmanlık — Randevu Açık
           </div>
 
           <h1
-            className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             Gebeliğinizde{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #D15398 0%, #e87fc0 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
+            <span style={{ background: "linear-gradient(135deg, #D15398 0%, #e87fc0 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               uzman
             </span>{" "}
             desteği
           </h1>
 
-          <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Doktor olarak biliyordum. Anne olunca anladım. Fetal tıp uzmanlığı ve
-            3 çocuk anneliğinin kesiştiği noktadan size rehberlik ediyorum.
+          <p className="text-base md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
+            Doktor olarak biliyordum. Anne olunca anladım. Kadın doğum uzmanlığı ve
+            3 çocuk anneliğimin kesiştiği noktadan size rehberlik ediyorum.
           </p>
 
-          {/* Trust badges */}
           <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {["Kadın Doğum Uzmanı", "King's College London", "Harvard Observer", "3 Çocuk Annesi"].map(
-              (badge) => (
-                <span
-                  key={badge}
-                  className="px-4 py-2 rounded-full text-sm font-medium border border-white/10 bg-white/5 text-white/70"
-                >
-                  {badge}
-                </span>
-              )
-            )}
+            {["Kadın Doğum Uzmanı", "FMF Fellowship — Londra", "Harvard Observer", "3 Çocuk Annesi"].map((badge) => (
+              <span key={badge} className="px-4 py-2 rounded-full text-sm font-medium border border-white/10 bg-white/5 text-white/70">
+                {badge}
+              </span>
+            ))}
           </div>
 
           <a
             href={CAL_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-            style={{
-              background: "linear-gradient(135deg, #D15398 0%, #b8407e 100%)",
-              boxShadow: "0 0 40px rgba(209,83,152,0.3)",
-            }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-semibold text-lg transition-all duration-300 hover:scale-105"
+            style={{ background: "linear-gradient(135deg, #D15398 0%, #b8407e 100%)", boxShadow: "0 0 40px rgba(209,83,152,0.3)" }}
           >
             Randevu Al
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -189,46 +183,43 @@ export default function DanismanlikPage() {
         </div>
       </section>
 
-      {/* Görsel Banner */}
-      <section className="px-6 py-10 max-w-6xl mx-auto">
-        <div className="rounded-3xl overflow-hidden relative" style={{ height: 280 }}>
+      {/* ── GÖRSEL BANNER ── */}
+      <section className="px-4 py-10 max-w-6xl mx-auto">
+        <div className="rounded-3xl overflow-hidden relative" style={{ height: 240 }}>
           <img
             src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1400&auto=format&fit=crop&q=80"
             alt="Online danışmanlık"
             className="w-full h-full object-cover"
           />
           <div
-            className="absolute inset-0 flex flex-col justify-center px-10"
-            style={{ background: "linear-gradient(to right, rgba(10,10,26,0.9) 40%, transparent 100%)" }}
+            className="absolute inset-0 flex flex-col justify-center px-8 md:px-14"
+            style={{ background: "linear-gradient(to right, rgba(10,10,26,0.92) 50%, transparent 100%)" }}
           >
-            <p className="text-[#D15398] text-sm font-medium mb-2 tracking-wider">NEDEN ONLINE DANIŞMANLIK?</p>
-            <h3 className="text-2xl md:text-3xl font-bold text-white max-w-md leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+            <p className="text-[#D15398] text-xs font-semibold mb-2 tracking-widest uppercase">Neden Online Danışmanlık?</p>
+            <h3 className="text-xl md:text-3xl font-bold text-white max-w-sm leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
               Evinizin konforunda<br />uzman görüşü
             </h3>
-            <p className="text-white/60 text-sm mt-3 max-w-sm">
+            <p className="text-white/55 text-sm mt-3 max-w-xs hidden md:block">
               Ultrason sonuçlarınızı, test raporlarınızı paylaşın — birlikte değerlendirelim.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Paketler */}
-      <section className="px-6 py-20 max-w-6xl mx-auto">
+      {/* ── PAKETLER ── */}
+      <section className="px-4 py-20 max-w-6xl mx-auto">
         <div className="text-center mb-14">
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-          >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
             Danışmanlık Paketleri
           </h2>
           <p className="text-white/50">Gizli maliyet yok. İhtiyacınıza uygun paketi seçin.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {packages.map((pkg, i) => (
             <div
               key={pkg.id}
-              className="relative rounded-2xl p-8 flex flex-col"
+              className="relative rounded-2xl p-6 flex flex-col"
               style={{
                 background: pkg.highlighted
                   ? "linear-gradient(145deg, rgba(209,83,152,0.2) 0%, rgba(27,27,69,0.6) 100%)"
@@ -237,41 +228,35 @@ export default function DanismanlikPage() {
                 boxShadow: pkg.highlighted ? "0 0 60px rgba(209,83,152,0.15)" : "none",
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "translateY(0)" : "translateY(24px)",
-                transition: `opacity 0.7s ease ${0.2 + i * 0.15}s, transform 0.7s ease ${0.2 + i * 0.15}s`,
+                transition: `opacity 0.7s ease ${0.15 + i * 0.1}s, transform 0.7s ease ${0.15 + i * 0.1}s`,
               }}
             >
-              {pkg.highlighted && (
+              {pkg.badge && (
                 <div
-                  className="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1.5 rounded-full text-sm font-semibold text-white"
+                  className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-xs font-bold text-white whitespace-nowrap"
                   style={{ background: "linear-gradient(135deg, #D15398, #b8407e)" }}
                 >
-                  En Popüler
+                  {pkg.badge}
                 </div>
               )}
 
-              <div className="mb-6">
-                <p className="text-white/40 text-sm mb-1">{pkg.duration}</p>
-                <h3 className="text-xl font-bold mb-2" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+              <div className="mb-4">
+                <p className="text-white/40 text-xs mb-1">{pkg.duration}</p>
+                <h3 className="text-base font-bold mb-1.5 leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                   {pkg.name}
                 </h3>
-                <p className="text-white/50 text-sm">{pkg.description}</p>
+                <p className="text-white/45 text-xs leading-relaxed">{pkg.description}</p>
               </div>
 
-              <div className="mb-8">
-                <span className="text-4xl font-bold text-white">₺{pkg.price}</span>
+              <div className="mb-5">
+                <span className="text-3xl font-bold text-white">₺{pkg.price}</span>
                 {pkg.priceNote && <p className="text-white/40 text-xs mt-1">{pkg.priceNote}</p>}
               </div>
 
-              <ul className="space-y-3 mb-8 flex-1">
+              <ul className="space-y-2 mb-6 flex-1">
                 {pkg.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm text-white/70">
-                    <svg
-                      className="w-4 h-4 mt-0.5 flex-shrink-0"
-                      style={{ color: "#D15398" }}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
+                  <li key={f} className="flex items-start gap-2 text-xs text-white/65">
+                    <svg className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{ color: "#D15398" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                     {f}
@@ -280,21 +265,14 @@ export default function DanismanlikPage() {
               </ul>
 
               <a
-                href={pkg.calLink}
+                href={CAL_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-center py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105"
+                className="block text-center py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105"
                 style={
                   pkg.highlighted
-                    ? {
-                        background: "linear-gradient(135deg, #D15398 0%, #b8407e 100%)",
-                        color: "white",
-                        boxShadow: "0 0 30px rgba(209,83,152,0.4)",
-                      }
-                    : {
-                        border: "1px solid rgba(209,83,152,0.4)",
-                        color: "#D15398",
-                      }
+                    ? { background: "linear-gradient(135deg, #D15398 0%, #b8407e 100%)", color: "white", boxShadow: "0 0 30px rgba(209,83,152,0.4)" }
+                    : { border: "1px solid rgba(209,83,152,0.4)", color: "#D15398" }
                 }
               >
                 Randevu Al →
@@ -304,54 +282,46 @@ export default function DanismanlikPage() {
         </div>
       </section>
 
-      {/* Özgeçmiş */}
-      <section className="px-6 py-20" style={{ background: "rgba(255,255,255,0.02)" }}>
+      {/* ── ÖZGEÇMİŞ ── */}
+      <section className="px-4 py-20" style={{ background: "rgba(255,255,255,0.02)" }}>
         <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-start">
-            {/* Sol — Kim ben */}
+          <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
-              {/* Görsel */}
-              <div className="mb-8 rounded-2xl overflow-hidden" style={{ maxHeight: 320 }}>
+              <div className="mb-8 rounded-2xl overflow-hidden" style={{ maxHeight: 300 }}>
                 <img
                   src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?w=800&auto=format&fit=crop&q=80"
-                  alt="Kadın doğum uzmanı ultrason"
+                  alt="Kadın doğum uzmanı"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <span className="text-[#D15398] text-sm font-medium tracking-widest uppercase mb-4 block">
-                Hakkımda
-              </span>
-              <h2
-                className="text-3xl md:text-4xl font-bold mb-6 leading-snug"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-              >
+              <span className="text-[#D15398] text-xs font-semibold tracking-widest uppercase mb-4 block">Hakkımda</span>
+              <h2 className="text-2xl md:text-4xl font-bold mb-6 leading-snug" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
                 Dr. Mervenur Kement
               </h2>
-              <p className="text-white/60 leading-relaxed mb-4">
-                Kadın doğum uzmanı olarak 2021'den bu yana Ankara Bilkent Şehir Hastanesi'nde çalışıyorum.
-                2020 yılında Harvard Medical School bünyesindeki Brigham and Women's Hospital'da yüksek riskli
-                ultrason ve fetal tıp gözlem programını tamamladım.
+              <p className="text-white/60 leading-relaxed mb-4 text-sm">
+                Kadın Hastalıkları ve Doğum Uzmanıyım. Uzmanlığımı Ankara Bilkent Şehir
+                Hastanesi'nde tamamladım. 2020 yılında Harvard Medical School bünyesindeki
+                Brigham and Women's Hospital'da yüksek riskli ultrason ve maternal-fetal tıp
+                gözlem programına katıldım.
               </p>
-              <p className="text-white/60 leading-relaxed mb-4">
-                2025 yılında King's College London'da Prof. Kypros Nicolaides liderliğindeki Fetal Medicine
-                Fellowship programına kabul aldım. Türkiye'nin en önde gelen fetal tıp merkezlerinden birinde
-                uzmanlık eğitimim ve 3 çocuk anneliğim, hastalarımla hem bilimsel hem insani bir bağ kurmamı
-                sağlıyor.
+              <p className="text-white/60 leading-relaxed mb-4 text-sm">
+                2025 yılında King's College London'da Prof. Kypros Nicolaides liderliğindeki
+                FMF Fetal Medicine Fellowship programına başladım. 3 çocuk annesi olarak hem
+                tıbbi hem kişisel deneyimimi hastalarımla paylaşıyorum.
               </p>
-              <p className="text-white/60 leading-relaxed">
-                <em>"Doktor olarak biliyordum. Anne olunca anladım."</em>
+              <p className="text-white/60 leading-relaxed italic text-sm">
+                "Doktor olarak biliyordum. Anne olunca anladım."
               </p>
             </div>
 
-            {/* Sağ — Credentials */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {credentials.map((c) => (
                 <div
                   key={c.label}
                   className="flex items-start gap-4 p-4 rounded-xl"
                   style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
                 >
-                  <span className="text-2xl">{c.icon}</span>
+                  <span className="text-xl">{c.icon}</span>
                   <div>
                     <p className="text-white/40 text-xs mb-0.5">{c.label}</p>
                     <p className="text-white/85 text-sm font-medium">{c.value}</p>
@@ -361,9 +331,8 @@ export default function DanismanlikPage() {
             </div>
           </div>
 
-          {/* Yayınlar */}
-          <div className="mt-16">
-            <h3 className="text-lg font-semibold mb-6 text-white/80">Bilimsel Yayınlar</h3>
+          <div className="mt-14">
+            <h3 className="text-base font-semibold mb-5 text-white/80">Bilimsel Yayınlar</h3>
             <div className="grid md:grid-cols-2 gap-4">
               {publications.map((p) => (
                 <div
@@ -380,32 +349,18 @@ export default function DanismanlikPage() {
         </div>
       </section>
 
-      {/* SSS */}
-      <section className="px-6 py-20 max-w-3xl mx-auto">
-        <h2
-          className="text-3xl font-bold text-center mb-12"
-          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-        >
+      {/* ── SSS ── */}
+      <section className="px-4 py-20 max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-12" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
           Sık Sorulan Sorular
         </h2>
-        <div className="space-y-4">
+        <div className="space-y-3">
           {[
-            {
-              q: "Görüşme nasıl gerçekleşiyor?",
-              a: "Randevunuzu onayladıktan sonra Google Meet linki e-postanıza iletilir. Ultrason görüntülerinizi veya test sonuçlarınızı görüşme öncesi paylaşabilirsiniz.",
-            },
-            {
-              q: "Ödemeyi nasıl yapacağım?",
-              a: "Randevu alırken online ödeme yapabilirsiniz. iyzico altyapısıyla güvenli kart ile ödeme kabul edilmektedir.",
-            },
-            {
-              q: "İkinci görüş için başvurabilir miyim?",
-              a: "Evet. Başka bir merkezdeki bulguları veya test sonuçlarını benimle paylaşabilir, bağımsız uzman görüşü alabilirsiniz.",
-            },
-            {
-              q: "Acil durumda ne yapmalıyım?",
-              a: "Acil tıbbi durumlarda lütfen en yakın sağlık kuruluşuna başvurun. Online danışmanlık acil tıbbi müdahalenin yerini tutmaz.",
-            },
+            { q: "Görüşme nasıl gerçekleşiyor?", a: "Randevunuzu onayladıktan sonra Google Meet linki e-postanıza iletilir. Ultrason görüntülerinizi veya test sonuçlarınızı görüşme öncesi paylaşabilirsiniz." },
+            { q: "WhatsApp paketi nasıl çalışıyor?", a: "1 ay boyunca mesai saatleri içinde sorularınızı WhatsApp üzerinden iletebilirsiniz. Paket ayrıca 1 adet Google Meet görüşmesi de içermektedir." },
+            { q: "Ödemeyi nasıl yapacağım?", a: "Randevu alırken online ödeme yapabilirsiniz. iyzico altyapısıyla güvenli kart ile ödeme kabul edilmektedir." },
+            { q: "İkinci görüş için başvurabilir miyim?", a: "Evet. Başka bir merkezdeki bulguları veya test sonuçlarını benimle paylaşabilir, bağımsız uzman görüşü alabilirsiniz." },
+            { q: "Acil durumda ne yapmalıyım?", a: "Acil tıbbi durumlarda lütfen en yakın sağlık kuruluşuna başvurun. Online danışmanlık acil tıbbi müdahalenin yerini tutmaz." },
           ].map((item) => (
             <details
               key={item.q}
@@ -413,20 +368,15 @@ export default function DanismanlikPage() {
               style={{ border: "1px solid rgba(255,255,255,0.08)" }}
             >
               <summary
-                className="flex items-center justify-between px-6 py-4 cursor-pointer text-white/80 font-medium hover:text-white transition-colors list-none"
+                className="flex items-center justify-between px-5 py-4 cursor-pointer text-white/80 text-sm font-medium hover:text-white transition-colors list-none"
                 style={{ background: "rgba(255,255,255,0.03)" }}
               >
                 {item.q}
-                <svg
-                  className="w-4 h-4 text-[#D15398] transition-transform group-open:rotate-180"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                <svg className="w-4 h-4 text-[#D15398] transition-transform group-open:rotate-180 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
-              <div className="px-6 py-4 text-white/55 text-sm leading-relaxed" style={{ background: "rgba(255,255,255,0.02)" }}>
+              <div className="px-5 py-4 text-white/55 text-sm leading-relaxed" style={{ background: "rgba(255,255,255,0.02)" }}>
                 {item.a}
               </div>
             </details>
@@ -434,33 +384,25 @@ export default function DanismanlikPage() {
         </div>
       </section>
 
-      {/* CTA Son */}
-      <section className="px-6 py-20 text-center">
+      {/* ── CTA ── */}
+      <section className="px-4 py-20 text-center">
         <div
-          className="max-w-2xl mx-auto rounded-3xl p-12"
+          className="max-w-2xl mx-auto rounded-3xl p-10 md:p-12"
           style={{
             background: "linear-gradient(135deg, rgba(209,83,152,0.15) 0%, rgba(27,27,69,0.4) 100%)",
             border: "1px solid rgba(209,83,152,0.2)",
           }}
         >
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-4"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-          >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
             Sorunuz mu var?
           </h2>
-          <p className="text-white/50 mb-8">
-            Yalnız değilsiniz. Randevunuzu alın, birlikte konuşalım.
-          </p>
+          <p className="text-white/50 mb-8 text-sm">Yalnız değilsiniz. Randevunuzu alın, birlikte konuşalım.</p>
           <a
             href={CAL_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-10 py-4 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105"
-            style={{
-              background: "linear-gradient(135deg, #D15398 0%, #b8407e 100%)",
-              boxShadow: "0 0 50px rgba(209,83,152,0.35)",
-            }}
+            style={{ background: "linear-gradient(135deg, #D15398 0%, #b8407e 100%)", boxShadow: "0 0 50px rgba(209,83,152,0.35)" }}
           >
             Randevu Al
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
