@@ -19,10 +19,10 @@ export default function DanismanlikPage() {
       duration: "20 dakika",
       price: "499",
       priceNote: undefined,
-      description: "Acil sorularınız için hızlı uzman görüşü",
+      description: "Sorularınız için hızlı uzman görüşü, Kısa bir süre bu fiyata",
       features: [
         "Google Meet görüşmesi",
-        "Tek soru odaklı değerlendirme",
+        "Soru odaklı değerlendirme",
         "Ultrason / test sonucu yorumu",
         "Yönlendirme ve öneri",
       ],
@@ -90,7 +90,7 @@ export default function DanismanlikPage() {
     { icon: "🇺🇸", label: "Gözlem Programı", value: "Brigham & Women's Hospital / Harvard Medical School, 2020" },
     { icon: "🇬🇧", label: "Fellowship", value: "King's College London, Fetal Medicine — Prof. K. Nicolaides, 2025" },
     { icon: "📋", label: "Üyelikler", value: "TJOD, AIUM, ISUOG" },
-    { icon: "🔬", label: "Eğitim", value: "FMF Internet Based Courses — 9 modül (2025)" },
+    { icon: "🔬", label: "Eğitim", value: "FMF Courses — 9 modül (2025)..." },
   ];
 
   const publications = [
@@ -158,12 +158,10 @@ export default function DanismanlikPage() {
           </h1>
 
           <p className="text-base md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Doktor olarak biliyordum. Anne olunca anladım. Kadın doğum uzmanlığı ve
-            3 çocuk anneliğimin kesiştiği noktadan size rehberlik ediyorum.
           </p>
 
           <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {["Kadın Doğum Uzmanı", "FMF Fellowship — Londra", "Harvard Observer", "3 Çocuk Annesi"].map((badge) => (
+            {["Kadın Doğum Uzmanı", "FMF Fellowship — Londra"].map((badge) => (
               <span key={badge} className="px-4 py-2 rounded-full text-sm font-medium border border-white/10 bg-white/5 text-white/70">
                 {badge}
               </span>
@@ -312,7 +310,7 @@ export default function DanismanlikPage() {
                 tıbbi hem kişisel deneyimimi hastalarımla paylaşıyorum.
               </p>
               <p className="text-white/60 leading-relaxed italic text-sm">
-                "Doktor olarak biliyordum. Anne olunca anladım."
+                "Doktor olarak biliyordum. Anne olunca anladım. Uluslarası standartlarda, anne inceliği ile değerlendirme için yanınızdayım."
               </p>
             </div>
 
